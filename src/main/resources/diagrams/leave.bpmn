@@ -3,9 +3,11 @@
   <process id="helloworld-id" name="helloworld-name" isExecutable="true">
     <startEvent id="startEvent" name="开始"></startEvent>
     <endEvent id="endEvent" name="结束"></endEvent>
-    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="usertask1"></sequenceFlow>
-    <userTask id="usertask1" name="User Task"></userTask>
-    <sequenceFlow id="flow2" sourceRef="usertask1" targetRef="endEvent"></sequenceFlow>
+    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="leave"></sequenceFlow>
+    <userTask id="leave" name="领导审批"></userTask>
+    <sequenceFlow id="flow2" sourceRef="leave" targetRef="ApproveResult"></sequenceFlow>
+    <scriptTask id="ApproveResult" name="审批结果" activiti:autoStoreVariables="false"></scriptTask>
+    <sequenceFlow id="flow3" sourceRef="ApproveResult" targetRef="endEvent"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_helloworld-id">
     <bpmndi:BPMNPlane bpmnElement="helloworld-id" id="BPMNPlane_helloworld-id">
@@ -13,10 +15,13 @@
         <omgdc:Bounds height="35.0" width="35.0" x="0.0" y="0.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endEvent" id="BPMNShape_endEvent">
-        <omgdc:Bounds height="35.0" width="35.0" x="290.0" y="60.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="520.0" y="114.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+      <bpmndi:BPMNShape bpmnElement="leave" id="BPMNShape_leave">
         <omgdc:Bounds height="55.0" width="105.0" x="150.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ApproveResult" id="BPMNShape_ApproveResult">
+        <omgdc:Bounds height="55.0" width="105.0" x="340.0" y="104.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="35.0" y="17.0"></omgdi:waypoint>
@@ -26,7 +31,11 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
         <omgdi:waypoint x="255.0" y="117.0"></omgdi:waypoint>
-        <omgdi:waypoint x="307.0" y="95.0"></omgdi:waypoint>
+        <omgdi:waypoint x="340.0" y="131.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="445.0" y="131.0"></omgdi:waypoint>
+        <omgdi:waypoint x="520.0" y="131.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
