@@ -20,12 +20,13 @@ public class HelloWorldTest {
 		RepositoryService repositoryService = processEngine.getRepositoryService();
 		repositoryService.createDeployment().addClasspathResource("diagrams/helloworld.bpmn").deploy();
 
-		//XxxService.createXxxQuery()方法创建查询对象，查询对应的<process>标签定义
+		//XxxService.createXxxQuery()方法创建查询对象，查询对应的<process>标签定义内容
 		ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().singleResult();
 		// id 是process标签的id属性值加上版本号1和4表示流程定义在数据库中的id
 		System.out.println("=====key:" + processDefinition.getKey() + "====name:" + processDefinition.getName()
 				+ "=====id:" + processDefinition.getId());
 		RuntimeService runtimeService = processEngine.getRuntimeService();
+		// 获取运行时流程处理实例
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("helloworld-id");
 		System.out.println("=====activitiID:" + processInstance.getActivityId() + "====definitionID:"
 				+ processInstance.getProcessDefinitionId());

@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://activiti.org/bpmn20">
-  <process id="helloworld-id" name="helloworld-name" isExecutable="true">
+  <process id="leave-id" name="leave-name" isExecutable="true">
     <startEvent id="startEvent" name="开始"></startEvent>
     <endEvent id="endEvent" name="结束"></endEvent>
-    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="leave"></sequenceFlow>
-    <userTask id="leave" name="领导审批"></userTask>
-    <sequenceFlow id="flow2" sourceRef="leave" targetRef="ApproveResult"></sequenceFlow>
-    <scriptTask id="ApproveResult" name="审批结果" activiti:autoStoreVariables="false"></scriptTask>
+    <userTask id="approveTask" name="领导审批" activiti:candidateGroups="deptLeader" activiti:formKey="formkey_approve"></userTask>
+    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="approveTask"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="approveTask" targetRef="ApproveResult"></sequenceFlow>
+    <scriptTask id="ApproveResult" name="审批结果" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>println "hahahahahahah"
+ 
+
+			</script>
+    </scriptTask>
     <sequenceFlow id="flow3" sourceRef="ApproveResult" targetRef="endEvent"></sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_helloworld-id">
-    <bpmndi:BPMNPlane bpmnElement="helloworld-id" id="BPMNPlane_helloworld-id">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_leave-id">
+    <bpmndi:BPMNPlane bpmnElement="leave-id" id="BPMNPlane_leave-id">
       <bpmndi:BPMNShape bpmnElement="startEvent" id="BPMNShape_startEvent">
         <omgdc:Bounds height="35.0" width="35.0" x="0.0" y="0.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endEvent" id="BPMNShape_endEvent">
         <omgdc:Bounds height="35.0" width="35.0" x="520.0" y="114.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="leave" id="BPMNShape_leave">
+      <bpmndi:BPMNShape bpmnElement="approveTask" id="BPMNShape_approveTask">
         <omgdc:Bounds height="55.0" width="105.0" x="150.0" y="90.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="ApproveResult" id="BPMNShape_ApproveResult">

@@ -1,0 +1,29 @@
+	<process id="leave-id" name="leave-name"
+		isExecutable="true">
+		<startEvent id="startEvent" name="开始"></startEvent>
+		<endEvent id="endEvent" name="结束"></endEvent>
+		<sequenceFlow id="flow1" sourceRef="startEvent"
+			targetRef="approveTask"></sequenceFlow>
+		<userTask id="approveTask" name="领导审批"
+			activiti:candidateGroups="deptLeader">
+			<!--  
+			<potentialOwner>
+				<resourceAssignmentExpression>
+					<formalExpression>deptLeader</formalExpression>
+				</resourceAssignmentExpression>
+			</potentialOwner>
+			-->
+		</userTask>
+		<sequenceFlow id="flow2" sourceRef="approveTask"
+			targetRef="ApproveResult"></sequenceFlow>
+		<scriptTask id="ApproveResult" name="审批结果"
+			scriptFormat="groovy" activiti:autoStoreVariables="false">
+			<script>
+				out:println "applyUser:" + applyUser + ", days:"
+				+ days + ", approval: " + approved;
+
+			</script>
+		</scriptTask>
+		<sequenceFlow id="flow3" sourceRef="ApproveResult"
+			targetRef="endEvent"></sequenceFlow>
+	</process>
