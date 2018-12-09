@@ -10,43 +10,43 @@ import org.junit.Test;
 
 public class HelloWorldTest {
 
-	@Test
-	public void startProcess() throws Exception{
-		// ´´½¨Ò»¸öÊ¹ÓÃH2ÄÚ´æÊı¾İ¿âµÄÁ÷³Ì´¦ÀíÒıÇæ£¬Ä¬ÈÏÁ¬½ÓurlÎªjdbc:h2:mem:activiti
-		ProcessEngine processEngine = ProcessEngineConfiguration
-				.createStandaloneInMemProcessEngineConfiguration()
-				.buildProcessEngine();
-		// ProcessEngineÒ»¹²ÓĞ7¸öXxxService¶ÔÏó£¬
-		RepositoryService repositoryService = processEngine.getRepositoryService();
-		repositoryService.createDeployment().addClasspathResource("diagrams/helloworld.bpmn").deploy();
-		
-		//XxxService.createXxxQuery()·½·¨´´½¨²éÑ¯¶ÔÏó£¬²éÑ¯¶ÔÓ¦µÄ<process>±êÇ©¶¨Òå
-		ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
-				.singleResult();
-		// id ÊÇprocess±êÇ©µÄidÊôĞÔÖµ¼ÓÉÏ1:4Õâ¸ö°æ±¾ºÅ
-		System.out.println("=====key:"+processDefinition.getKey() + "====name:" +processDefinition.getName()+"=====id:"+processDefinition.getId());
-		RuntimeService runtimeService = processEngine.getRuntimeService();
-		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("helloworld-id");
-		System.out.println("=====activitiID:"+processInstance.getActivityId() + "====definitionID:" + processInstance.getProcessDefinitionId());
-				
-	}
-	
-	
-	@Test
-	public void startProcess2() throws Exception{
-		// ´´½¨Ò»¸öÊ¹ÓÃH2ÄÚ´æÊı¾İ¿âµÄÁ÷³Ì´¦ÀíÒıÇæ£¬Ä¬ÈÏÁ¬½ÓurlÎªjdbc:h2:mem:activiti
-		ProcessEngine processEngine = ProcessEngineConfiguration
-				.createStandaloneInMemProcessEngineConfiguration()
-				.buildProcessEngine();
-		// ProcessEngineÒ»¹²ÓĞ7¸öXxxService¶ÔÏó£¬
-		RepositoryService repositoryService = processEngine.getRepositoryService();
-		repositoryService.createDeployment().addClasspathResource("diagrams/helloworld.bpmn").deploy();
-		
-		//XxxService.createXxxQuery()·½·¨´´½¨²éÑ¯¶ÔÏó£¬²éÑ¯¶ÔÓ¦µÄ<process>±êÇ©¶¨Òå
-		ModelQuery modelQuery = repositoryService.createModelQuery();
-		System.out.println(modelQuery.desc());
-		// IdentityService¸úÓÃ»§ÈÏÖ¤ÓĞ¹ØµÄ½Ó¿Ú
-		processEngine.getIdentityService().createUserQuery();
-	}
-	
+    @Test
+    public void startProcess() throws Exception{
+        // åˆ›å»ºä¸€ä¸ªä½¿ç”¨H2å†…å­˜æ•°æ®åº“çš„æµç¨‹å¤„ç†å¼•æ“ï¼Œé»˜è®¤è¿æ¥urlä¸ºjdbc:h2:mem:activiti
+        ProcessEngine processEngine = ProcessEngineConfiguration
+                .createStandaloneInMemProcessEngineConfiguration()
+                .buildProcessEngine();
+        // ProcessEngineä¸€å…±æœ‰7ä¸ªXxxServiceå¯¹è±¡ï¼Œ
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        repositoryService.createDeployment().addClasspathResource("diagrams/helloworld.bpmn").deploy();
+
+        //XxxService.createXxxQuery()æ–¹æ³•åˆ›å»ºæŸ¥è¯¢å¯¹è±¡ï¼ŒæŸ¥è¯¢å¯¹åº”çš„<process>æ ‡ç­¾å®šä¹‰
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
+                .singleResult();
+        // id æ˜¯processæ ‡ç­¾çš„idå±æ€§å€¼åŠ ä¸Š1:4è¿™ä¸ªç‰ˆæœ¬å·
+        System.out.println("=====key:"+processDefinition.getKey() + "====name:" +processDefinition.getName()+"=====id:"+processDefinition.getId());
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("helloworld-id");
+        System.out.println("=====activitiID:"+processInstance.getActivityId() + "====definitionID:" + processInstance.getProcessDefinitionId());
+
+    }
+
+
+    @Test
+    public void startProcess2() throws Exception{
+        // åˆ›å»ºä¸€ä¸ªä½¿ç”¨H2å†…å­˜æ•°æ®åº“çš„æµç¨‹å¤„ç†å¼•æ“ï¼Œé»˜è®¤è¿æ¥urlä¸ºjdbc:h2:mem:activiti
+        ProcessEngine processEngine = ProcessEngineConfiguration
+                .createStandaloneInMemProcessEngineConfiguration()
+                .buildProcessEngine();
+        // ProcessEngineä¸€å…±æœ‰7ä¸ªXxxServiceå¯¹è±¡ï¼Œ
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        repositoryService.createDeployment().addClasspathResource("diagrams/helloworld.bpmn").deploy();
+
+        //XxxService.createXxxQuery()æ–¹æ³•åˆ›å»ºæŸ¥è¯¢å¯¹è±¡ï¼ŒæŸ¥è¯¢å¯¹åº”çš„<process>æ ‡ç­¾å®šä¹‰
+        ModelQuery modelQuery = repositoryService.createModelQuery();
+        System.out.println(modelQuery.desc());
+        // IdentityServiceè·Ÿç”¨æˆ·è®¤è¯æœ‰å…³çš„æ¥å£
+        processEngine.getIdentityService().createUserQuery();
+    }
+
 }
