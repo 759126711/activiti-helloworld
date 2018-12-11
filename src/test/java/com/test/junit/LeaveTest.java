@@ -38,24 +38,24 @@ public class LeaveTest {
  
 		TaskService taskService = processEngine.getTaskService();
 		Task approveTask = taskService.createTaskQuery()
-				.taskCandidateGroup("deptLeader")  // ÕâÀï¾ÍÊÇ¶ÔÓ¦activiti:candidateGroupsÊôĞÔµÄÖµ
+				.taskCandidateGroup("deptLeader")
 				.singleResult(); 
 		System.out.println("formkey:" + approveTask.getFormKey());
 		
 		taskService.claim(approveTask.getId(), "leaderUser");
 		
-		//ÉóÅú½á¹û×÷Îª½Å±¾ÈÎÎñµÄÊäÈëÖµ
+		//å®¡æ‰¹ç»“æœä½œä¸ºè„šæœ¬ä»»åŠ¡çš„è¾“å…¥å€¼
 		Map<String, Object> resultData = new HashMap<>();
 		resultData.put("approved", true);
 		taskService.complete(approveTask.getId(), resultData);
 		
-		// ÕâÀïÔÚÈÎÎñÖ´ĞĞÍê³Éºó£¬ÔÙ²éÑ¯Ò»´ÎµÃµ½µÄ½á¹û»áÊÇnull
+		// è¿™é‡Œåœ¨ä»»åŠ¡æ‰§è¡Œå®Œæˆåï¼Œå†æŸ¥è¯¢ä¸€æ¬¡å¾—åˆ°çš„ç»“æœä¼šæ˜¯null
 		approveTask = taskService.createTaskQuery()
-				.taskCandidateGroup("deptLeader")  // ÕâÀï¾ÍÊÇ¶ÔÓ¦activiti:candidateGroupsÊôĞÔµÄÖµ
+				.taskCandidateGroup("deptLeader")  // è¿™é‡Œå°±æ˜¯å¯¹åº”activiti:candidateGroupså±æ€§çš„å€¼
 				.singleResult(); 
 	
 		HistoryService historyService = processEngine.getHistoryService();
-		// »ñÈ¡ÒÑ¾­Íê³ÉµÄÁ÷³ÌµÄÊıÁ¿¡£
+		// è·å–å·²ç»å®Œæˆçš„æµç¨‹çš„æ•°é‡
 		long count = historyService.createHistoricProcessInstanceQuery().count();
 		System.out.println("=========count:"+count);
 	 

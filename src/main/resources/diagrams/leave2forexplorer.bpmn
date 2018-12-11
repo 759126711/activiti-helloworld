@@ -5,14 +5,7 @@
     <endEvent id="endEvent" name="结束"></endEvent>
     <userTask id="approveTask" name="领导审批" activiti:candidateGroups="deptLeader" activiti:formKey="formkey_approve"></userTask>
     <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="approveTask"></sequenceFlow>
-    <sequenceFlow id="flow2" sourceRef="approveTask" targetRef="ApproveResult"></sequenceFlow>
-    <scriptTask id="ApproveResult" name="审批结果" scriptFormat="groovy" activiti:autoStoreVariables="false">
-      <script>println "hahahahahahah"
- 
-
-			</script>
-    </scriptTask>
-    <sequenceFlow id="flow3" sourceRef="ApproveResult" targetRef="endEvent"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="approveTask" targetRef="endEvent"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_leave-id">
     <bpmndi:BPMNPlane bpmnElement="leave-id" id="BPMNPlane_leave-id">
@@ -25,9 +18,6 @@
       <bpmndi:BPMNShape bpmnElement="approveTask" id="BPMNShape_approveTask">
         <omgdc:Bounds height="55.0" width="105.0" x="150.0" y="90.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="ApproveResult" id="BPMNShape_ApproveResult">
-        <omgdc:Bounds height="55.0" width="105.0" x="340.0" y="104.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="35.0" y="17.0"></omgdi:waypoint>
         <omgdi:waypoint x="42.0" y="15.0"></omgdi:waypoint>
@@ -36,10 +26,6 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
         <omgdi:waypoint x="255.0" y="117.0"></omgdi:waypoint>
-        <omgdi:waypoint x="340.0" y="131.0"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
-        <omgdi:waypoint x="445.0" y="131.0"></omgdi:waypoint>
         <omgdi:waypoint x="520.0" y="131.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
